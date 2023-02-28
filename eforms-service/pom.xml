@@ -14,7 +14,7 @@
   </parent>
 
   <properties>
-    <version.org.kie>7.67.0.Final-redhat-00019</version.org.kie>
+    <version.org.kie>7.52.0.Final-redhat-00008</version.org.kie>
     <maven.compiler.target>1.8</maven.compiler.target>
     <maven.compiler.source>1.8</maven.compiler.source>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -27,15 +27,16 @@
     <version.org.keycloak>15.0.2</version.org.keycloak>
   </properties>
 
+
   <dependencies>
-<!--
+
 
     <dependency>
       <groupId>ca.ontario.moh</groupId>
       <artifactId>eforms-kjar</artifactId>
       <version>1.0-SNAPSHOT</version>
     </dependency>
-
+<!--
     <dependency>
       <groupId>ca.ontario.moh</groupId>
       <artifactId>eforms-model</artifactId>
@@ -108,6 +109,29 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
         
+      </plugin>
+            <plugin>
+        <groupId>org.kie</groupId>
+        <artifactId>kie-maven-plugin</artifactId>
+        <version>${version.org.kie}</version>
+        <executions>
+          <execution>
+            <id>copy</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>package-dependencies-kjar</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <artifactItems>
+            <artifactItem>
+                <groupId>ca.ontario.moh</groupId>
+                <artifactId>eforms-kjar</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </artifactItem>
+          </artifactItems>
+        </configuration>
       </plugin>
     </plugins>
   </build>

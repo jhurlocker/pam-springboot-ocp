@@ -1,4 +1,9 @@
+eforms-service/target/
+eforms-service/eforms-kjar/target/
+eforms-service/eforms-model/target/
 eforms-kjar/target/eforms-kjar-1.0-SNAPSHOT.jar
 eforms-model/target/eforms-model-1.0-SNAPSHOT.jar
 eforms-service/target/eforms-service-1.0-SNAPSHOT.jar
 eforms-service/target/eforms-service-1.0-SNAPSHOT.jar.original
+eforms-service/target/classes/KIE-INF/lib/eforms-kjar-1.0-SNAPSHOT.jar
+eforms-service/target/classes/KIE-INF/lib/eforms-model-1.0-SNAPSHOT.jar
