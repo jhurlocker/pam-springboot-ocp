@@ -1,1 +1,2 @@
-# pam-springboot-ocp
+To deploy on OpenShift follow 
+https://access.redhat.com/documentation/pa-in/red_hat_process_automation_manager/7.13/html/integrating_red_hat_process_automation_manager_with_other_products_and_components/openshift-springboot-proc_business-applications
