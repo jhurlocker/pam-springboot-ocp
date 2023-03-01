@@ -10,11 +10,11 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.3.4.RELEASE</version>
+    <version>2.5.12</version>
   </parent>
 
   <properties>
-    <version.org.kie>7.52.0.Final-redhat-00008</version.org.kie>
+    <version.org.kie>7.67.0.Final-redhat-00019</version.org.kie>
     <maven.compiler.target>1.8</maven.compiler.target>
     <maven.compiler.source>1.8</maven.compiler.source>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -23,26 +23,24 @@
     <!-- <fabric8.version>3.5.40</fabric8.version> -->
     <!-- There is an issue with favric 3.5.40 see: https://issues.redhat.com/browse/JBPM-9045 -->
     <fabric8.version>4.4.0</fabric8.version>
-    <aws.java.sdk.version>2.17.19</aws.java.sdk.version>
-    <version.org.keycloak>15.0.2</version.org.keycloak>
+    <version.io.swagger>1.6.2</version.io.swagger>
+    <version.org.apache.cxf>3.4.5.redhat-00001</version.org.apache.cxf>
+    <version.org.webjars.swagger-ui>2.2.10</version.org.webjars.swagger-ui>
   </properties>
 
-
   <dependencies>
-
-
+    
+    <dependency>
+        <groupId>org.kie</groupId>
+        <artifactId>kie-server-spring-boot-starter</artifactId>
+        <version>${version.org.kie}</version>
+    </dependency>
     <dependency>
       <groupId>ca.ontario.moh</groupId>
       <artifactId>eforms-kjar</artifactId>
       <version>1.0-SNAPSHOT</version>
     </dependency>
-<!--
-    <dependency>
-      <groupId>ca.ontario.moh</groupId>
-      <artifactId>eforms-model</artifactId>
-      <version>1.0-SNAPSHOT</version>
-    </dependency>
--->
+    
 <!-- BEGIN SWAGGER -->
 <dependency>
   <groupId>com.fasterxml.jackson.core</groupId>
@@ -70,31 +68,8 @@
   <artifactId>swagger-ui</artifactId>
   <version>4.1.0</version>
 </dependency>
+
       <!-- END SWAGGER -->
-
-    <dependency>
-      <groupId>org.kie</groupId>
-      <artifactId>kie-server-spring-boot-starter</artifactId>
-      <version>${version.org.kie}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.kie</groupId>
-      <artifactId>kie-api</artifactId>
-      <version>${version.org.kie}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.kie</groupId>
-      <artifactId>kie-internal</artifactId>
-      <version>${version.org.kie}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.apache.tika</groupId>
-      <artifactId>tika-core</artifactId>
-      <version>2.1.0</version>
-    </dependency>
 
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -110,7 +85,7 @@
         <artifactId>spring-boot-maven-plugin</artifactId>
         
       </plugin>
-            <plugin>
+      <plugin>
         <groupId>org.kie</groupId>
         <artifactId>kie-maven-plugin</artifactId>
         <version>${version.org.kie}</version>
@@ -235,7 +210,7 @@
                           </includes>
                         </fileSet>
                         <fileSet>
-                          <directory>../eforms-kjar/target/local-repository/maven</directory>
+                          <directory>../none/target/local-repository/maven</directory>
                           <outputDirectory>opt/jboss/.m2/repository</outputDirectory>        
                         </fileSet>
                       </inline>
@@ -307,7 +282,7 @@
                           </includes>
                         </fileSet>
                         <fileSet>
-                          <directory>../eforms-kjar/target/local-repository/maven</directory>
+                          <directory>../none/target/local-repository/maven</directory>
                           <outputDirectory>opt/jboss/.m2/repository</outputDirectory>        
                         </fileSet>
                       </inline>
