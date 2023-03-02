@@ -4,7 +4,7 @@
 
 2. Switch to the project you just created in OpenShift (oc project <BAMOE_PROJECT>).
 
-3. Build the eforms-model project, eforms-kjar project, and then the eforms-service project (mvn clean install).
+3. Build the eforms projects at the project root level. (mvn clean install).
 
 4. Copy the eforms-service/target/eforms-service-1.0-SNAPSHOT.jar to ocp-image/root/opt/spring-service
 
