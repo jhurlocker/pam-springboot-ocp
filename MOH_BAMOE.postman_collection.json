@@ -1,0 +1,80 @@
+{
+	"info": {
+		"_postman_id": "bc12310a-2b79-49b8-b4e8-3d053853d374",
+		"name": "MOH_BAMOE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18075734"
+	},
+	"item": [
+		{
+			"name": "kie_springboot",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"model\":\n  {\"Model\":{\n                 \"firstName\":\"John\",\n                 \"lastName\":\"Hurlocker\"\n              }\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://kie-springboot-moh-pam-spring.apps-crc.testing/rest/server/containers/eforms-kjar-container1/processes/moh_process/instances",
+					"protocol": "http",
+					"host": [
+						"kie-springboot-moh-pam-spring",
+						"apps-crc",
+						"testing"
+					],
+					"path": [
+						"rest",
+						"server",
+						"containers",
+						"eforms-kjar-container1",
+						"processes",
+						"moh_process",
+						"instances"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "kieserver1!",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "kieserver",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

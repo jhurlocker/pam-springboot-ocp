@@ -66,3 +66,6 @@ https://access.redhat.com/documentation/pa-in/red_hat_process_automation_manager
    -- LAST NAME -- Hurlocker
    -- YOUR FULLNAME IS -- John Hurlocker
    ```
+
+**Postman collection**  
+See MOH_BAMOE.postman_collection.json to send requests to the KIE server through Postman (https://www.postman.com/)
