@@ -22,14 +22,17 @@
    oc expose service/openshift-kie-springboot --port=8090
 ```
 
-For reference see:
-
+For reference see:  
 https://access.redhat.com/documentation/pa-in/red_hat_process_automation_manager/7.13/html/integrating_red_hat_process_automation_manager_with_other_products_and_components/openshift-springboot-proc_business-applications
 
 **Important URLs**
-KIE Server Info = http://<OPENSHIFT-KIE-SPRINGBOOT-ROUTE>/rest/server  
-KIE Server List of Created Containers = http://<OPENSHIFT-KIE-SPRINGBOOT-ROUTE>/rest/server/containers  
-Swagger UI = http://<OPENSHIFT-KIE-SPRINGBOOT-ROUTE>/rest/api-docs?url=http://<OPENSHIFT-KIE-SPRINGBOOT-ROUTE>/rest/swagger.json  
+
+* KIE Server Info  
+  http://OPENSHIFT-KIE-SPRINGBOOT-ROUTE/rest/server  
+* KIE Server List of Created Containers  
+  http://OPENSHIFT-KIE-SPRINGBOOT-ROUTE/rest/server/containers  
+* Swagger UI  
+  http://OPENSHIFT-KIE-SPRINGBOOT-ROUTE/rest/api-docs?url=http://OPENSHIFT-KIE-SPRINGBOOT-ROUTE/rest/swagger.json  
 
 **Send a JSON request to start a process**
 1. Go to the swagger URL and under the section titled Process Instances expand the below sub section.
