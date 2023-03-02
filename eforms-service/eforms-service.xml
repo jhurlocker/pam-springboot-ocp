@@ -34,7 +34,7 @@
       </releaseId>
       <status>STARTED</status>
       <scanner>
-        <status>STARTED</status>
+        <status>STOPPED</status>
       </scanner>
       <configItems>
         <config-item>
@@ -59,7 +59,7 @@
         </config-item>
       </configItems>
       <messages/>
-      <containerAlias>eforms-kjar</containerAlias>
+      <containerAlias>eforms-kjar-alias</containerAlias>
     </container>
   </containers>
 </kie-server-state>
