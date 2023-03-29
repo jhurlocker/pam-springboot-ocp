@@ -6,7 +6,7 @@
   <groupId>ca.ontario.moh</groupId>
   <artifactId>eforms-kjar</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <!--<packaging>kjar</packaging>-->
+  <packaging>kjar</packaging>
   <name>eforms-kjar</name>
 
   <properties>

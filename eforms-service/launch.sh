@@ -70,16 +70,10 @@ elif [[ "$@" =~ "openshift" ]]; then
     oc new-app eforms-service:1.0-SNAPSHOT
     oc expose svc/eforms-service
 else
-
-    echo "Launching the application on OpenShift..."
-    
-    oc new-app eforms-service:1.0-SNAPSHOT
-    oc expose svc/eforms-service
-
-	#echo "Launching the application locally..."
-	#pattern="eforms-service"
-	#files=( $pattern )
-	#cd ${files[0]}
-	#executable="$(ls  *target/*.jar | tail -n1)"
-	#java -jar "$executable"
+	echo "Launching the application locally..."
+	pattern="eforms-service"
+	files=( $pattern )
+	cd ${files[0]}
+	executable="$(ls  *target/*.jar | tail -n1)"
+	java -jar "$executable"
 fi

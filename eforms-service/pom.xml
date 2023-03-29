@@ -11,6 +11,7 @@
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
     <version>2.5.12</version>
+    <relativePath/>
   </parent>
 
   <properties>
@@ -29,12 +30,52 @@
   </properties>
 
   <dependencies>
-    
+   <!--     <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-autoconfigure</artifactId>
+    </dependency>-->
     <dependency>
         <groupId>org.kie</groupId>
         <artifactId>kie-server-spring-boot-starter</artifactId>
         <version>${version.org.kie}</version>
-    </dependency>
+  </dependency>
+  <!--    <dependency>
+        <groupId>org.kie</groupId>
+        <artifactId>openshift-kie-springboot</artifactId>
+        <version>7.67.0.Final-redhat-00008</version>
+  </dependency>
+  				<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+    <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+             <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+        </dependency>-->
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		 </dependency>
+     
+            <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+        </dependency>
+	<dependency>
+		<groupId>mysql</groupId>
+		<artifactId>mysql-connector-java</artifactId>
+	</dependency>
+
     <dependency>
       <groupId>ca.ontario.moh</groupId>
       <artifactId>eforms-kjar</artifactId>
@@ -71,19 +112,23 @@
 
       <!-- END SWAGGER -->
 
-    <dependency>
+    <!--<dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
-    </dependency>
+    </dependency>-->
   </dependencies>
 
   <build>
     <plugins>
       <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>3.2.0</version>
+      </plugin>
+      <plugin>
         <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-        
+        <artifactId>spring-boot-maven-plugin</artifactId>        
       </plugin>
       <plugin>
         <groupId>org.kie</groupId>
@@ -108,6 +153,30 @@
           </artifactItems>
         </configuration>
       </plugin>
+      <plugin>
+    <artifactId>maven-resources-plugin</artifactId>
+    <version>3.0.2</version>
+    <executions>
+        <execution>
+            <id>copy-resource-one</id>
+            <phase>install</phase>
+            <goals>
+                <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+                <outputDirectory>/home/jhurlocker/Documents/Red_Hat/MOH/ocp-image/root/opt/spring-service</outputDirectory>
+                <resources>
+                    <resource>
+                        <directory>/home/jhurlocker/Documents/Red_Hat/MOH/eforms/eforms-service/target</directory>
+                        <includes>
+                            <include>eforms-service-1.0-SNAPSHOT.jar</include>
+                        </includes>
+                    </resource>
+                </resources>
+            </configuration>
+        </execution>
+    </executions>
+</plugin>
     </plugins>
   </build>
 

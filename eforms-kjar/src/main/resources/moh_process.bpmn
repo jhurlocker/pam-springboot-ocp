@@ -1,18 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn2:definitions xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:bpsim="http://www.bpsim.org/schemas/1.0" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:drools="http://www.jboss.org/drools" xmlns:xsi="xsi" id="_xoRmsJswEDuHHO3wc5P3rg" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd http://www.jboss.org/drools drools.xsd http://www.bpsim.org/schemas/1.0 bpsim.xsd http://www.omg.org/spec/DD/20100524/DC DC.xsd http://www.omg.org/spec/DD/20100524/DI DI.xsd " exporter="jBPM Process Modeler" exporterVersion="2.0" targetNamespace="http://www.omg.org/bpmn20">
-  <bpmn2:itemDefinition id="_modelItem" structureRef="ca.ontario.moh.model.Model"/>
-  <bpmn2:collaboration id="_D1ECA90E-C687-4B91-A48D-8C8A419546BD" name="Default Collaboration">
-    <bpmn2:participant id="_D23602C9-6DD8-49B5-9372-00B98CC7D17C" name="Pool Participant" processRef="moh_process"/>
+<bpmn2:definitions xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:bpsim="http://www.bpsim.org/schemas/1.0" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:drools="http://www.jboss.org/drools" xmlns:xsi="xsi" id="_Kted4Ku2EDuJCMH8NMofbg" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd http://www.jboss.org/drools drools.xsd http://www.bpsim.org/schemas/1.0 bpsim.xsd http://www.omg.org/spec/DD/20100524/DC DC.xsd http://www.omg.org/spec/DD/20100524/DI DI.xsd " exporter="jBPM Process Modeler" exporterVersion="2.0" targetNamespace="http://www.omg.org/bpmn20">
+  <bpmn2:itemDefinition id="_modelItem" structureRef="ca.ontario.moh.models.Model"/>
+  <bpmn2:itemDefinition id="_providerItem" structureRef="ca.ontario.moh.models.Provider"/>
+  <bpmn2:collaboration id="_92183F39-7E15-4C4A-8405-21C58A3F677E" name="Default Collaboration">
+    <bpmn2:participant id="_65D61DC8-4784-46D0-90CD-912063F9DF2C" name="Pool Participant" processRef="moh_process"/>
   </bpmn2:collaboration>
   <bpmn2:process id="moh_process" drools:packageName="ca.ontario.moh" drools:version="1.0" drools:adHoc="false" name="moh_process" isExecutable="true" processType="Public">
     <bpmn2:extensionElements>
-      <drools:import name="ca.ontario.moh.model.Model"/>
+      <drools:import name="ca.ontario.moh.models.Model"/>
+      <drools:import name="ca.ontario.moh.models.Provider"/>
     </bpmn2:extensionElements>
     <bpmn2:property id="model" itemSubjectRef="_modelItem" name="model"/>
-    <bpmn2:sequenceFlow id="_59309A3F-1F57-4564-9E84-66E723979B10" sourceRef="_0AC2F6CC-7E2E-4731-95B0-9A79E38FF885" targetRef="_DCEFDCB7-E6CF-48FE-BB20-CDEFD847C89D"/>
+    <bpmn2:property id="provider" itemSubjectRef="_providerItem" name="provider"/>
+    <bpmn2:sequenceFlow id="_B4CCF4C6-06C5-4D4B-A554-74CE7A08C996" sourceRef="_3086A9D2-BDBA-4AC9-886C-DA544DA5B896" targetRef="_91D2B4BE-F60C-44C1-A378-14DAFBE7C16C"/>
+    <bpmn2:sequenceFlow id="_D5191D87-C271-453E-9DD9-477FC3C20786" sourceRef="_0AC2F6CC-7E2E-4731-95B0-9A79E38FF885" targetRef="_3086A9D2-BDBA-4AC9-886C-DA544DA5B896"/>
     <bpmn2:sequenceFlow id="_B702F455-9506-4C5A-97B9-6C632E9BAD9A" sourceRef="_36E7D7D5-CCC7-47D8-A20A-7DB1C5D8E656" targetRef="_0AC2F6CC-7E2E-4731-95B0-9A79E38FF885"/>
-    <bpmn2:endEvent id="_DCEFDCB7-E6CF-48FE-BB20-CDEFD847C89D">
-      <bpmn2:incoming>_59309A3F-1F57-4564-9E84-66E723979B10</bpmn2:incoming>
+    <bpmn2:scriptTask id="_3086A9D2-BDBA-4AC9-886C-DA544DA5B896" name="Print Satus" scriptFormat="http://www.java.com/java">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Print Satus]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_D5191D87-C271-453E-9DD9-477FC3C20786</bpmn2:incoming>
+      <bpmn2:outgoing>_B4CCF4C6-06C5-4D4B-A554-74CE7A08C996</bpmn2:outgoing>
+      <bpmn2:script>System.out.println("-- VALIDATION NOT NEEEDED --");
+
+        //ModelService ms = new ModelService();
+        //ca.ontario.moh.models.Model newModel = (ca.ontario.moh.models.Model) model;
+        //try {
+        //    ms.createOrUpdateEmployee(newModel);
+       // } catch (Exception e) {
+            // TODO Auto-generated catch block
+       //     e.printStackTrace();
+        //}
+System.out.println("-- PERSISTED MODEL ENTITY --");
+</bpmn2:script>
+    </bpmn2:scriptTask>
+    <bpmn2:endEvent id="_91D2B4BE-F60C-44C1-A378-14DAFBE7C16C">
+      <bpmn2:incoming>_B4CCF4C6-06C5-4D4B-A554-74CE7A08C996</bpmn2:incoming>
     </bpmn2:endEvent>
     <bpmn2:scriptTask id="_0AC2F6CC-7E2E-4731-95B0-9A79E38FF885" name="Set Name" scriptFormat="http://www.java.com/java">
       <bpmn2:extensionElements>
@@ -21,7 +46,7 @@
         </drools:metaData>
       </bpmn2:extensionElements>
       <bpmn2:incoming>_B702F455-9506-4C5A-97B9-6C632E9BAD9A</bpmn2:incoming>
-      <bpmn2:outgoing>_59309A3F-1F57-4564-9E84-66E723979B10</bpmn2:outgoing>
+      <bpmn2:outgoing>_D5191D87-C271-453E-9DD9-477FC3C20786</bpmn2:outgoing>
       <bpmn2:script>System.out.println("-- IN PRINT NAME TASK --");
 
 System.out.println("-- FIRST NAME -- " + model.getFirstName());
@@ -45,16 +70,23 @@ System.out.println("-- YOUR FULLNAME IS -- " + model.getFullName());
       <bpmndi:BPMNShape id="shape__0AC2F6CC-7E2E-4731-95B0-9A79E38FF885" bpmnElement="_0AC2F6CC-7E2E-4731-95B0-9A79E38FF885">
         <dc:Bounds height="102" width="154" x="411" y="248"/>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="shape__DCEFDCB7-E6CF-48FE-BB20-CDEFD847C89D" bpmnElement="_DCEFDCB7-E6CF-48FE-BB20-CDEFD847C89D">
-        <dc:Bounds height="56" width="56" x="645" y="271"/>
+      <bpmndi:BPMNShape id="shape__91D2B4BE-F60C-44C1-A378-14DAFBE7C16C" bpmnElement="_91D2B4BE-F60C-44C1-A378-14DAFBE7C16C">
+        <dc:Bounds height="56" width="56" x="1131" y="271"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__3086A9D2-BDBA-4AC9-886C-DA544DA5B896" bpmnElement="_3086A9D2-BDBA-4AC9-886C-DA544DA5B896">
+        <dc:Bounds height="102" width="154" x="794" y="247.5"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="edge_shape__36E7D7D5-CCC7-47D8-A20A-7DB1C5D8E656_to_shape__0AC2F6CC-7E2E-4731-95B0-9A79E38FF885" bpmnElement="_B702F455-9506-4C5A-97B9-6C632E9BAD9A">
         <di:waypoint x="303" y="299"/>
         <di:waypoint x="488" y="299"/>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="edge_shape__0AC2F6CC-7E2E-4731-95B0-9A79E38FF885_to_shape__DCEFDCB7-E6CF-48FE-BB20-CDEFD847C89D" bpmnElement="_59309A3F-1F57-4564-9E84-66E723979B10">
+      <bpmndi:BPMNEdge id="edge_shape__0AC2F6CC-7E2E-4731-95B0-9A79E38FF885_to_shape__3086A9D2-BDBA-4AC9-886C-DA544DA5B896" bpmnElement="_D5191D87-C271-453E-9DD9-477FC3C20786">
         <di:waypoint x="488" y="299"/>
-        <di:waypoint x="673" y="299"/>
+        <di:waypoint x="794" y="298.5"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__3086A9D2-BDBA-4AC9-886C-DA544DA5B896_to_shape__91D2B4BE-F60C-44C1-A378-14DAFBE7C16C" bpmnElement="_B4CCF4C6-06C5-4D4B-A554-74CE7A08C996">
+        <di:waypoint x="948" y="298.5"/>
+        <di:waypoint x="1159" y="299"/>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
@@ -90,10 +122,30 @@ System.out.println("-- YOUR FULLNAME IS -- " + model.getFullName());
               </bpsim:UnitCost>
             </bpsim:CostParameters>
           </bpsim:ElementParameters>
+          <bpsim:ElementParameters elementRef="_3086A9D2-BDBA-4AC9-886C-DA544DA5B896">
+            <bpsim:TimeParameters>
+              <bpsim:ProcessingTime>
+                <bpsim:NormalDistribution mean="0" standardDeviation="0"/>
+              </bpsim:ProcessingTime>
+            </bpsim:TimeParameters>
+            <bpsim:ResourceParameters>
+              <bpsim:Availability>
+                <bpsim:FloatingParameter value="0"/>
+              </bpsim:Availability>
+              <bpsim:Quantity>
+                <bpsim:FloatingParameter value="0"/>
+              </bpsim:Quantity>
+            </bpsim:ResourceParameters>
+            <bpsim:CostParameters>
+              <bpsim:UnitCost>
+                <bpsim:FloatingParameter value="0"/>
+              </bpsim:UnitCost>
+            </bpsim:CostParameters>
+          </bpsim:ElementParameters>
         </bpsim:Scenario>
       </bpsim:BPSimData>
     </bpmn2:extensionElements>
-    <bpmn2:source>_xoRmsJswEDuHHO3wc5P3rg</bpmn2:source>
-    <bpmn2:target>_xoRmsJswEDuHHO3wc5P3rg</bpmn2:target>
+    <bpmn2:source>_Kted4Ku2EDuJCMH8NMofbg</bpmn2:source>
+    <bpmn2:target>_Kted4Ku2EDuJCMH8NMofbg</bpmn2:target>
   </bpmn2:relationship>
 </bpmn2:definitions>

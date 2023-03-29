@@ -1,0 +1,13 @@
+package ca.ontario.moh
+
+import ca.ontario.moh.models.Provider
+
+rule "14789"
+ruleflow-group "group14789"
+when
+    p: Provider(existingAgreement == true, endReasonCode == "", classCode == "MD")
+then
+    p.setProviderApproved(true);
+    update(p);
+    System.out.println("-- RULE 14789 FIRED --");
+end
