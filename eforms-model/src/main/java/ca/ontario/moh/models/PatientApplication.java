@@ -6,25 +6,29 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
-public class Patient implements java.io.Serializable {
+@javax.persistence.Entity
+@javax.persistence.Table(name = "PatientApplication")
+public class PatientApplication implements java.io.Serializable {
 
-    static final long serialVersionUID = 1L;
+static final long serialVersionUID = 1L;
 
-@Id
-@GeneratedValue
+@javax.persistence.GeneratedValue(strategy = javax.persistence.GenerationType.AUTO, generator = "PATIENT_APP_ID_GENERATOR")
+@javax.persistence.Id
+@javax.persistence.SequenceGenerator(name = "PATIENT_APP_ID_GENERATOR", sequenceName = "PATIENT_APP_ID_SEQ")
 private Long id;
-    
+//PROCESS ID
+private long pid; 
 private String firstName = "";
 private String lastName = "";
 private String fullName = "";
 
-public Patient() {
+public PatientApplication() {
     super();
 }
 
-public Patient(String firstName, String lastName, String fullName) {
+public PatientApplication(long pid, String firstName, String lastName, String fullName) {
     super();
+    this.pid = pid;
     this.firstName = firstName;
     this.lastName = lastName;
     this.fullName = fullName;
@@ -33,8 +37,16 @@ public Patient(String firstName, String lastName, String fullName) {
 @Override
 public String toString() {
     return String.format(
-        "Model[id=%d, firstName='%s', lastName='%s',fullName='%s']",
-        id, firstName, lastName, fullName);
+        "Model[id=%d, pid=%d, firstName='%s', lastName='%s',fullName='%s']",
+        id, pid, firstName, lastName, fullName);
+}
+
+public long getPid() {
+    return pid;
+}
+
+public void setPid(long pid) {
+    this.pid = pid;
 }
 
 public void setId(Long id) {

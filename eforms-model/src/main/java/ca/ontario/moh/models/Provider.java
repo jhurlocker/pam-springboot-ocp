@@ -1,6 +1,8 @@
 package ca.ontario.moh.models;
 
-public class Provider {
+public class Provider implements java.io.Serializable {
+
+    static final long serialVersionUID = 1L;
     
     private String providerName = "";
     private boolean existingAgreement = false;

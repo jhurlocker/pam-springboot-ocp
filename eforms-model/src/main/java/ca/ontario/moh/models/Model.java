@@ -7,7 +7,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-public class Model {
+public class Model implements java.io.Serializable {
+
+    static final long serialVersionUID = 1L;
 
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)

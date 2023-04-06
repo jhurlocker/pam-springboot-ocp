@@ -1,27 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn2:definitions xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:bpsim="http://www.bpsim.org/schemas/1.0" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:drools="http://www.jboss.org/drools" xmlns:xsi="xsi" id="_Kted4Ku2EDuJCMH8NMofbg" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd http://www.jboss.org/drools drools.xsd http://www.bpsim.org/schemas/1.0 bpsim.xsd http://www.omg.org/spec/DD/20100524/DC DC.xsd http://www.omg.org/spec/DD/20100524/DI DI.xsd " exporter="jBPM Process Modeler" exporterVersion="2.0" targetNamespace="http://www.omg.org/bpmn20">
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:bpsim="http://www.bpsim.org/schemas/1.0" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:drools="http://www.jboss.org/drools" id="_HpRm0LZbEDuciup4eSv2kA" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd http://www.jboss.org/drools drools.xsd http://www.bpsim.org/schemas/1.0 bpsim.xsd http://www.omg.org/spec/DD/20100524/DC DC.xsd http://www.omg.org/spec/DD/20100524/DI DI.xsd " exporter="jBPM Process Modeler" exporterVersion="2.0" targetNamespace="http://www.omg.org/bpmn20">
   <bpmn2:itemDefinition id="_modelItem" structureRef="ca.ontario.moh.models.Model"/>
-  <bpmn2:itemDefinition id="_providerItem" structureRef="ca.ontario.moh.models.Provider"/>
-  <bpmn2:collaboration id="_92183F39-7E15-4C4A-8405-21C58A3F677E" name="Default Collaboration">
-    <bpmn2:participant id="_65D61DC8-4784-46D0-90CD-912063F9DF2C" name="Pool Participant" processRef="moh_process"/>
+  <bpmn2:itemDefinition id="_patientAppItem" structureRef="ca.ontario.moh.models.PatientApplication"/>
+  <bpmn2:itemDefinition id="__4AF5E753-CBEA-4160-9249-6E7E99450E68_SkippableInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__4AF5E753-CBEA-4160-9249-6E7E99450E68_PriorityInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__4AF5E753-CBEA-4160-9249-6E7E99450E68_CommentInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__4AF5E753-CBEA-4160-9249-6E7E99450E68_DescriptionInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__4AF5E753-CBEA-4160-9249-6E7E99450E68_CreatedByInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__4AF5E753-CBEA-4160-9249-6E7E99450E68_TaskNameInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__4AF5E753-CBEA-4160-9249-6E7E99450E68_GroupIdInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__4AF5E753-CBEA-4160-9249-6E7E99450E68_ContentInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__4AF5E753-CBEA-4160-9249-6E7E99450E68_NotStartedReassignInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__4AF5E753-CBEA-4160-9249-6E7E99450E68_NotCompletedReassignInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__4AF5E753-CBEA-4160-9249-6E7E99450E68_NotStartedNotifyInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__4AF5E753-CBEA-4160-9249-6E7E99450E68_NotCompletedNotifyInputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__4AF5E753-CBEA-4160-9249-6E7E99450E68_patientAppInputXItem" structureRef="ca.ontario.moh.models.PatientApplication"/>
+  <bpmn2:itemDefinition id="__4AF5E753-CBEA-4160-9249-6E7E99450E68_patientAppOutputXItem" structureRef="ca.ontario.moh.models.PatientApplication"/>
+  <bpmn2:collaboration id="_BAE77DA7-7E73-40CB-B684-811166373638" name="Default Collaboration">
+    <bpmn2:participant id="_1CE4053D-FB46-41FD-8D92-828F0CBA565E" name="Pool Participant" processRef="moh_process"/>
   </bpmn2:collaboration>
   <bpmn2:process id="moh_process" drools:packageName="ca.ontario.moh" drools:version="1.0" drools:adHoc="false" name="moh_process" isExecutable="true" processType="Public">
     <bpmn2:extensionElements>
       <drools:import name="ca.ontario.moh.models.Model"/>
-      <drools:import name="ca.ontario.moh.models.Provider"/>
+      <drools:import name="ca.ontario.moh.models.PatientApplication"/>
     </bpmn2:extensionElements>
     <bpmn2:property id="model" itemSubjectRef="_modelItem" name="model"/>
-    <bpmn2:property id="provider" itemSubjectRef="_providerItem" name="provider"/>
+    <bpmn2:property id="patientApp" itemSubjectRef="_patientAppItem" name="patientApp"/>
+    <bpmn2:sequenceFlow id="_157DEF4C-D7DA-4E07-978E-939638A30836" sourceRef="_4AF5E753-CBEA-4160-9249-6E7E99450E68" targetRef="_3086A9D2-BDBA-4AC9-886C-DA544DA5B896"/>
     <bpmn2:sequenceFlow id="_B4CCF4C6-06C5-4D4B-A554-74CE7A08C996" sourceRef="_3086A9D2-BDBA-4AC9-886C-DA544DA5B896" targetRef="_91D2B4BE-F60C-44C1-A378-14DAFBE7C16C"/>
-    <bpmn2:sequenceFlow id="_D5191D87-C271-453E-9DD9-477FC3C20786" sourceRef="_0AC2F6CC-7E2E-4731-95B0-9A79E38FF885" targetRef="_3086A9D2-BDBA-4AC9-886C-DA544DA5B896"/>
+    <bpmn2:sequenceFlow id="_D5191D87-C271-453E-9DD9-477FC3C20786" sourceRef="_0AC2F6CC-7E2E-4731-95B0-9A79E38FF885" targetRef="_4AF5E753-CBEA-4160-9249-6E7E99450E68"/>
     <bpmn2:sequenceFlow id="_B702F455-9506-4C5A-97B9-6C632E9BAD9A" sourceRef="_36E7D7D5-CCC7-47D8-A20A-7DB1C5D8E656" targetRef="_0AC2F6CC-7E2E-4731-95B0-9A79E38FF885"/>
+    <bpmn2:userTask id="_4AF5E753-CBEA-4160-9249-6E7E99450E68" name="A User Task">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[A User Task]]></drools:metaValue>
+        </drools:metaData>
+        <drools:onEntry-script scriptFormat="http://www.java.com/java">
+          <drools:script><![CDATA[System.out.println("--- IN USER TASK ---");]]></drools:script>
+        </drools:onEntry-script>
+        <drools:onExit-script scriptFormat="http://www.java.com/java">
+          <drools:script><![CDATA[patientApp.setLastName("USERTASKLASTNAME");
+System.out.println("--- LEAVING USER TASK ---");]]></drools:script>
+        </drools:onExit-script>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_D5191D87-C271-453E-9DD9-477FC3C20786</bpmn2:incoming>
+      <bpmn2:outgoing>_157DEF4C-D7DA-4E07-978E-939638A30836</bpmn2:outgoing>
+      <bpmn2:ioSpecification>
+        <bpmn2:dataInput id="_4AF5E753-CBEA-4160-9249-6E7E99450E68_TaskNameInputX" drools:dtype="Object" itemSubjectRef="__4AF5E753-CBEA-4160-9249-6E7E99450E68_TaskNameInputXItem" name="TaskName"/>
+        <bpmn2:dataInput id="_4AF5E753-CBEA-4160-9249-6E7E99450E68_patientAppInputX" drools:dtype="ca.ontario.moh.models.PatientApplication" itemSubjectRef="__4AF5E753-CBEA-4160-9249-6E7E99450E68_patientAppInputXItem" name="patientApp"/>
+        <bpmn2:dataInput id="_4AF5E753-CBEA-4160-9249-6E7E99450E68_SkippableInputX" drools:dtype="Object" itemSubjectRef="__4AF5E753-CBEA-4160-9249-6E7E99450E68_SkippableInputXItem" name="Skippable"/>
+        <bpmn2:dataOutput id="_4AF5E753-CBEA-4160-9249-6E7E99450E68_patientAppOutputX" drools:dtype="ca.ontario.moh.models.PatientApplication" itemSubjectRef="__4AF5E753-CBEA-4160-9249-6E7E99450E68_patientAppOutputXItem" name="patientApp"/>
+        <bpmn2:inputSet>
+          <bpmn2:dataInputRefs>_4AF5E753-CBEA-4160-9249-6E7E99450E68_TaskNameInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_4AF5E753-CBEA-4160-9249-6E7E99450E68_patientAppInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_4AF5E753-CBEA-4160-9249-6E7E99450E68_SkippableInputX</bpmn2:dataInputRefs>
+        </bpmn2:inputSet>
+        <bpmn2:outputSet>
+          <bpmn2:dataOutputRefs>_4AF5E753-CBEA-4160-9249-6E7E99450E68_patientAppOutputX</bpmn2:dataOutputRefs>
+        </bpmn2:outputSet>
+      </bpmn2:ioSpecification>
+      <bpmn2:dataInputAssociation>
+        <bpmn2:targetRef>_4AF5E753-CBEA-4160-9249-6E7E99450E68_TaskNameInputX</bpmn2:targetRef>
+        <bpmn2:assignment>
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression"><![CDATA[Task]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression"><![CDATA[_4AF5E753-CBEA-4160-9249-6E7E99450E68_TaskNameInputX]]></bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation>
+        <bpmn2:sourceRef>patientApp</bpmn2:sourceRef>
+        <bpmn2:targetRef>_4AF5E753-CBEA-4160-9249-6E7E99450E68_patientAppInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation>
+        <bpmn2:targetRef>_4AF5E753-CBEA-4160-9249-6E7E99450E68_SkippableInputX</bpmn2:targetRef>
+        <bpmn2:assignment>
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression"><![CDATA[false]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression"><![CDATA[_4AF5E753-CBEA-4160-9249-6E7E99450E68_SkippableInputX]]></bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataOutputAssociation>
+        <bpmn2:sourceRef>_4AF5E753-CBEA-4160-9249-6E7E99450E68_patientAppOutputX</bpmn2:sourceRef>
+        <bpmn2:targetRef>patientApp</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:potentialOwner id="_HpVRMLZbEDuciup4eSv2kA">
+        <bpmn2:resourceAssignmentExpression id="_HpVRMbZbEDuciup4eSv2kA">
+          <bpmn2:formalExpression>kieserver</bpmn2:formalExpression>
+        </bpmn2:resourceAssignmentExpression>
+      </bpmn2:potentialOwner>
+    </bpmn2:userTask>
     <bpmn2:scriptTask id="_3086A9D2-BDBA-4AC9-886C-DA544DA5B896" name="Print Satus" scriptFormat="http://www.java.com/java">
       <bpmn2:extensionElements>
         <drools:metaData name="elementname">
           <drools:metaValue><![CDATA[Print Satus]]></drools:metaValue>
         </drools:metaData>
       </bpmn2:extensionElements>
-      <bpmn2:incoming>_D5191D87-C271-453E-9DD9-477FC3C20786</bpmn2:incoming>
+      <bpmn2:incoming>_157DEF4C-D7DA-4E07-978E-939638A30836</bpmn2:incoming>
       <bpmn2:outgoing>_B4CCF4C6-06C5-4D4B-A554-74CE7A08C996</bpmn2:outgoing>
       <bpmn2:script>System.out.println("-- VALIDATION NOT NEEEDED --");
 
@@ -55,7 +127,8 @@ String firstName = model.getFirstName();
 String lastName = model.getLastName();
 model.setFullName(firstName + " " + lastName);
 System.out.println("-- YOUR FULLNAME IS -- " + model.getFullName());
-
+System.out.println("-- SETTING PROCESS ID -- " + kcontext.getProcessInstance().getId());
+patientApp.setPid(kcontext.getProcessInstance().getId());
 </bpmn2:script>
     </bpmn2:scriptTask>
     <bpmn2:startEvent id="_36E7D7D5-CCC7-47D8-A20A-7DB1C5D8E656">
@@ -76,17 +149,24 @@ System.out.println("-- YOUR FULLNAME IS -- " + model.getFullName());
       <bpmndi:BPMNShape id="shape__3086A9D2-BDBA-4AC9-886C-DA544DA5B896" bpmnElement="_3086A9D2-BDBA-4AC9-886C-DA544DA5B896">
         <dc:Bounds height="102" width="154" x="794" y="247.5"/>
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__4AF5E753-CBEA-4160-9249-6E7E99450E68" bpmnElement="_4AF5E753-CBEA-4160-9249-6E7E99450E68">
+        <dc:Bounds height="102" width="154" x="603" y="464"/>
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="edge_shape__36E7D7D5-CCC7-47D8-A20A-7DB1C5D8E656_to_shape__0AC2F6CC-7E2E-4731-95B0-9A79E38FF885" bpmnElement="_B702F455-9506-4C5A-97B9-6C632E9BAD9A">
         <di:waypoint x="303" y="299"/>
         <di:waypoint x="488" y="299"/>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="edge_shape__0AC2F6CC-7E2E-4731-95B0-9A79E38FF885_to_shape__3086A9D2-BDBA-4AC9-886C-DA544DA5B896" bpmnElement="_D5191D87-C271-453E-9DD9-477FC3C20786">
+      <bpmndi:BPMNEdge id="edge_shape__0AC2F6CC-7E2E-4731-95B0-9A79E38FF885_to_shape__4AF5E753-CBEA-4160-9249-6E7E99450E68" bpmnElement="_D5191D87-C271-453E-9DD9-477FC3C20786">
         <di:waypoint x="488" y="299"/>
-        <di:waypoint x="794" y="298.5"/>
+        <di:waypoint x="680" y="464"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_shape__3086A9D2-BDBA-4AC9-886C-DA544DA5B896_to_shape__91D2B4BE-F60C-44C1-A378-14DAFBE7C16C" bpmnElement="_B4CCF4C6-06C5-4D4B-A554-74CE7A08C996">
         <di:waypoint x="948" y="298.5"/>
         <di:waypoint x="1159" y="299"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__4AF5E753-CBEA-4160-9249-6E7E99450E68_to_shape__3086A9D2-BDBA-4AC9-886C-DA544DA5B896" bpmnElement="_157DEF4C-D7DA-4E07-978E-939638A30836">
+        <di:waypoint x="680" y="515"/>
+        <di:waypoint x="871" y="349.5"/>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
@@ -142,10 +222,30 @@ System.out.println("-- YOUR FULLNAME IS -- " + model.getFullName());
               </bpsim:UnitCost>
             </bpsim:CostParameters>
           </bpsim:ElementParameters>
+          <bpsim:ElementParameters elementRef="_4AF5E753-CBEA-4160-9249-6E7E99450E68">
+            <bpsim:TimeParameters>
+              <bpsim:ProcessingTime>
+                <bpsim:NormalDistribution mean="0" standardDeviation="0"/>
+              </bpsim:ProcessingTime>
+            </bpsim:TimeParameters>
+            <bpsim:ResourceParameters>
+              <bpsim:Availability>
+                <bpsim:FloatingParameter value="0"/>
+              </bpsim:Availability>
+              <bpsim:Quantity>
+                <bpsim:FloatingParameter value="0"/>
+              </bpsim:Quantity>
+            </bpsim:ResourceParameters>
+            <bpsim:CostParameters>
+              <bpsim:UnitCost>
+                <bpsim:FloatingParameter value="0"/>
+              </bpsim:UnitCost>
+            </bpsim:CostParameters>
+          </bpsim:ElementParameters>
         </bpsim:Scenario>
       </bpsim:BPSimData>
     </bpmn2:extensionElements>
-    <bpmn2:source>_Kted4Ku2EDuJCMH8NMofbg</bpmn2:source>
-    <bpmn2:target>_Kted4Ku2EDuJCMH8NMofbg</bpmn2:target>
+    <bpmn2:source>_HpRm0LZbEDuciup4eSv2kA</bpmn2:source>
+    <bpmn2:target>_HpRm0LZbEDuciup4eSv2kA</bpmn2:target>
   </bpmn2:relationship>
 </bpmn2:definitions>
