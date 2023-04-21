@@ -18,10 +18,13 @@
 		<properties>
 	        <!--property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/-->
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://mysqlappdb:3306/mohappdb"/> 
+            <!--<property name="javax.persistence.jdbc.url" value="jdbc:mysql://mysqlappdb:3306/mohappdb"/>
+			<property name="javax.persistence.jdbc.url" value="${APP_DB_URL}"/>-->
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect" />
-            <property name="javax.persistence.jdbc.user" value="mohdbuser"/> 
-            <property name="javax.persistence.jdbc.password" value="mohbamoepass9"/>
+            <!--<property name="javax.persistence.jdbc.user" value="{env.dbUser}"/> 
+            <property name="javax.persistence.jdbc.password" value="${dbPass}"/>
+			<property name="javax.persistence.jdbc.user" value="mohdbuser"/> 
+            <property name="javax.persistence.jdbc.password" value="mohbamoepass9"/>-->
             <property name="hibernate.show_sql" value = "false" /> 
             <property name="hibernate.format_sql" value = "true" />
             <property name="hibernate.hbm2ddl.auto" value = "update"/>

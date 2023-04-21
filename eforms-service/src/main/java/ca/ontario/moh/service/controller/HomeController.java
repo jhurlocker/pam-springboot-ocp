@@ -10,6 +10,7 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -54,10 +55,53 @@ public class HomeController {
 	public String hello() {
 		return "Hello World RESTful with Spring Boot";
 	}
+
+    @Value("${APP_DB_USERID}")
+    private String appUser;
+
+    public String getAppUser() {
+        return appUser;
+    }
+
+    public void setAppUser(String appUser) {
+        this.appUser = appUser;
+    }
+
+    @Value("${APP_DB_PWD}")
+    private String appPass;
+
+    public String getAppPass() {
+        return appPass;
+    }
+
+    public void setAppPass(String appPass) {
+        this.appPass = appPass;
+    }
     
+    @Value("${APP_DB_URL}")
+    private String appUrl;
+
+    public String getAppUrl() {
+        return appUrl;
+    }
+
+    public void setAppUrl(String appUrl) {
+        this.appUrl = appUrl;
+    }
+
     @GetMapping("/addpatient")
     public String addPatient(){
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("moh-jpa");
+
+        System.out.println("DB URL: " + this.getAppUrl());
+        System.out.println("DB USER: " + this.getAppUser());
+        System.out.println("DB PASS: " + this.getAppPass());
+        Map<String, Object> properties = new HashMap<>();
+        properties.put("javax.persistence.jdbc.url", this.getAppUrl());
+        properties.put("javax.persistence.jdbc.user", this.getAppUser());
+        properties.put("javax.persistence.jdbc.password", this.getAppPass());
+       
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("moh-jpa", properties);
+        
 		EntityManager entityManager = emf.createEntityManager();
 		entityManager.getTransaction().begin();
 
@@ -74,7 +118,17 @@ public class HomeController {
     //STARTS THE moh_process
     @GetMapping("/startProcess")
     public String startProcess(){
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("moh-jpa");
+        System.out.println("DB URL: " + this.getAppUrl());
+        System.out.println("DB USER: " + this.getAppUser());
+        System.out.println("DB PASS: " + this.getAppPass());
+        Map<String, Object> properties = new HashMap<>();
+        properties.put("javax.persistence.jdbc.url", this.getAppUrl());
+        properties.put("javax.persistence.jdbc.user", this.getAppUser());
+        properties.put("javax.persistence.jdbc.password", this.getAppPass());
+       
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("moh-jpa", properties);
+
+        //EntityManagerFactory emf = Persistence.createEntityManagerFactory("moh-jpa");
 		EntityManager entityManager = emf.createEntityManager();
 		entityManager.getTransaction().begin();
 
@@ -85,7 +139,7 @@ public class HomeController {
         
         
         entityManager.persist(patientApp);
-        entityManager.flush();
+        // entityManager.flush();
         System.out.println("---- PATIENT APP ID AFTER FLUSH --- " + patientApp.getId());
        
         this.params.put("patientApp", patientApp);
@@ -94,7 +148,7 @@ public class HomeController {
         long pid = processService.startProcess("eforms-kjar-container1", "moh_process", params);
         entityManager.persist(patientApp);
 		entityManager.getTransaction().commit();
-        emf.close();
+        //emf.close();
         return "MOH process started. PID:\n\t{}" + pid;
 
     }

@@ -4,14 +4,17 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import org.drools.persistence.jpa.marshaller.JPAPlaceholderResolverStrategy;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.core.env.Environment;
 
 @SpringBootApplication
 @ComponentScan(basePackages={"ca.ontario.moh.service", "ca.ontario.moh.models"})
 public class Application {
+    
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
