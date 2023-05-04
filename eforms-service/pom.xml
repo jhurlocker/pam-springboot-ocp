@@ -16,8 +16,8 @@
 
   <properties>
     <version.org.kie>7.67.0.Final-redhat-00019</version.org.kie>
-    <maven.compiler.target>1.8</maven.compiler.target>
-    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+    <maven.compiler.source>11</maven.compiler.source>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <narayana.version>5.9.0.Final</narayana.version>
@@ -327,7 +327,7 @@
                 <image>
                   <name>apps/${project.artifactId}:${project.version}</name>
                   <build>
-                    <from>fabric8/java-jboss-openjdk8-jdk</from>
+                    <from>registry.redhat.io/ubi8/openjdk-11</from>
                     <assembly>
                       <targetDir>/</targetDir>
                       <inline>
