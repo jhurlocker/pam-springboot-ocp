@@ -153,6 +153,44 @@ public class HomeController {
 
     }
     
+    //STARTS THE moh_process
+    @GetMapping("/startKSProcess")
+    public String startKSProcess(){
+        // System.out.println("DB URL: " + this.getAppUrl());
+        // System.out.println("DB USER: " + this.getAppUser());
+        // System.out.println("DB PASS: " + this.getAppPass());
+        // Map<String, Object> properties = new HashMap<>();
+        // properties.put("javax.persistence.jdbc.url", this.getAppUrl());
+        // properties.put("javax.persistence.jdbc.user", this.getAppUser());
+        // properties.put("javax.persistence.jdbc.password", this.getAppPass());
+        
+        // EntityManagerFactory emf = Persistence.createEntityManagerFactory("moh-jpa", properties);
+
+        // //EntityManagerFactory emf = Persistence.createEntityManagerFactory("moh-jpa");
+        // EntityManager entityManager = emf.createEntityManager();
+        // entityManager.getTransaction().begin();
+
+        // System.out.println("--- ABOUT TO ADD PATIENT --- ");
+
+        // patientApp.setFirstName("John");
+        // patientApp.setLastName("H");
+        
+        
+        // entityManager.persist(patientApp);
+        // // entityManager.flush();
+        // System.out.println("---- PATIENT APP ID AFTER FLUSH --- " + patientApp.getId());
+        
+        // this.params.put("patientApp", patientApp);
+        // this.params.put("model", model);
+
+        long pid = processService.startProcess("eforms-kjar-container1", "mohks_process");
+        //entityManager.persist(patientApp);
+        //entityManager.getTransaction().commit();
+        //emf.close();
+        return "MOH process started. PID:\n\t{}" + pid;
+
+    }
+
     //STARTS A TASKS GIVEN A PROCESS INSTANCE ID (pid)
     @PutMapping("/startTask/{pid}")
     public String startTask(@PathVariable(value = "pid") Long pid){

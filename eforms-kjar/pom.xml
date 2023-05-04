@@ -11,8 +11,8 @@
 
   <properties>
     <version.org.kie>7.67.0.Final-redhat-00019</version.org.kie>
-    <maven.compiler.target>1.8</maven.compiler.target>
-    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+    <maven.compiler.source>11</maven.compiler.source>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
@@ -22,7 +22,7 @@
       <artifactId>eforms-model</artifactId>
       <version>1.0-SNAPSHOT</version>
     </dependency>
-        <dependency>
+    <dependency>
       <groupId>com.thoughtworks.xstream</groupId>
       <artifactId>xstream</artifactId>
       <version>1.4.10</version>
@@ -38,6 +38,13 @@
       <artifactId>kie-api</artifactId>
       <version>${version.org.kie}</version>
       <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>moh-jbpm-workitems-rest</artifactId>
+      <version>7.74.0-SNAPSHOT</version>
+          <scope>system</scope>
+      <systemPath>/home/jhurlocker/Documents/Red_Hat/MOH/eforms/eforms-kjar/src/main/resources/libs/moh-jbpm-workitems-rest-7.74.0-SNAPSHOT.jar</systemPath>
     </dependency>
   </dependencies>
 
