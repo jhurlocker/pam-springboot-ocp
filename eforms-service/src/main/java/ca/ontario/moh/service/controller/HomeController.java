@@ -56,7 +56,6 @@ public class HomeController {
 		return "Hello World RESTful with Spring Boot";
 	}
 
-    @Value("${APP_DB_USERID}")
     private String appUser;
 
     public String getAppUser() {
@@ -67,7 +66,6 @@ public class HomeController {
         this.appUser = appUser;
     }
 
-    @Value("${APP_DB_PWD}")
     private String appPass;
 
     public String getAppPass() {
@@ -78,7 +76,6 @@ public class HomeController {
         this.appPass = appPass;
     }
     
-    @Value("${APP_DB_URL}")
     private String appUrl;
 
     public String getAppUrl() {
@@ -153,6 +150,24 @@ public class HomeController {
 
     }
     
+    //STARTS THE moh_process
+    @GetMapping("/startSimpleProcess")
+    public String startSimpleProcess(){
+
+        Patient p = new Patient();
+        p.setFirstName("John");
+        p.setLastName("H");
+
+        Map<String, Object> parameters = new HashMap<String, Object>();
+        
+        parameters.put("patient", p);
+
+        long pid = processService.startProcess("eforms-kjar-container1", "simple_process", parameters);
+
+        return "MOH process started. PID:\n\t{}" + pid;
+
+    }
+
     //STARTS THE moh_process
     @GetMapping("/startKSProcess")
     public String startKSProcess(){

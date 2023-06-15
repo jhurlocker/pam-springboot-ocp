@@ -44,7 +44,7 @@
       <artifactId>moh-jbpm-workitems-rest</artifactId>
       <version>7.74.0-SNAPSHOT</version>
           <scope>system</scope>
-      <systemPath>/home/jhurlocker/Documents/Red_Hat/MOH/eforms/eforms-kjar/src/main/resources/libs/moh-jbpm-workitems-rest-7.74.0-SNAPSHOT.jar</systemPath>
+	  <systemPath>/home/lab-user/pam-springboot-ocp/moh-jbpm-workitems-rest-7.74.0-SNAPSHOT.jar</systemPath>
     </dependency>
   </dependencies>
 
