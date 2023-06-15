@@ -80,7 +80,7 @@
   <bpmn2:itemDefinition id="__DCD97847-6E3C-4C5E-9EE3-221C04BE42ED_ConditionInputXItem" structureRef="String"/>
   <bpmn2:signal id="_825e5b59-8a03-369d-b7ed-e5e3824400c9" name="Milestone 2: Order shipped"/>
   <bpmn2:signal id="_8d0daabf-eed3-3c08-ae19-bfee9a5d3dfe" name="Milestone 3: Delivered to customer"/>
-  <bpmn2:process id="itorders.orderhardware" drools:packageName="org.jbpm.demo.itorders" drools:version="1.0" drools:adHoc="true" name="Order for IT hardware" isExecutable="true">
+  <bpmn2:process id="itorders.orderhardware" drools:packageName="ca.ontario.moh" drools:version="1.0" drools:adHoc="true" name="Order for IT hardware" isExecutable="true">
     <bpmn2:extensionElements>
       <drools:metaData name="customCaseIdPrefix">
         <drools:metaValue><![CDATA[IT]]></drools:metaValue>
@@ -320,6 +320,8 @@
           <bpmn2:dataInputRefs>_F7C0BB87-F47D-4426-8260-1BDEC8A6806D_CaseIdInputX</bpmn2:dataInputRefs>
           <bpmn2:dataInputRefs>_F7C0BB87-F47D-4426-8260-1BDEC8A6806D_RequestorInputX</bpmn2:dataInputRefs>
         </bpmn2:inputSet>
+        <bpmn2:outputSet>
+        </bpmn2:outputSet>
       </bpmn2:ioSpecification>
       <bpmn2:dataInputAssociation id="_B0vy8wYREeq5x4k5aBfW8A">
         <bpmn2:sourceRef>CaseId</bpmn2:sourceRef>

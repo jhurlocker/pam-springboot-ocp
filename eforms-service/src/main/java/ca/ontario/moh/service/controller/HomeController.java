@@ -167,6 +167,24 @@ public class HomeController {
         return "MOH process started. PID:\n\t{}" + pid;
 
     }
+    //
+    //STARTS THE moh_process
+    @GetMapping("/orderHardwareProcess")
+    public String ordertHardwareProcess(){
+
+        Patient p = new Patient();
+        p.setFirstName("John");
+        p.setLastName("H");
+
+        Map<String, Object> parameters = new HashMap<String, Object>();
+        
+        parameters.put("patient", p);
+
+        long pid = processService.startProcess("eforms-kjar-container1", "itorders.orderhardware", parameters);
+
+        return "OrderHardware process started. PID:\n\t{}" + pid;
+
+    }
 
     //STARTS THE moh_process
     @GetMapping("/startKSProcess")
