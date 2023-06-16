@@ -46,6 +46,11 @@
         <artifactId>kie-server-spring-boot-starter</artifactId>
         <version>${version.org.kie}</version>
   </dependency>
+    <dependency>
+        <groupId>org.kie</groupId>
+        <artifactId>kie-api</artifactId>
+        <version>${version.org.kie}</version>
+  </dependency>
   <!--    <dependency>
         <groupId>org.kie</groupId>
         <artifactId>openshift-kie-springboot</artifactId>

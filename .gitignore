@@ -1,3 +1,20 @@
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+# https://github.com/takari/maven-wrapper#usage-without-binary-jar
+.mvn/wrapper/maven-wrapper.jar
+
+# Eclipse m2e generated files
+# Eclipse Core
+.project
+# JDT-specific (Eclipse Java Development Tools)
+.classpath
 eforms-service/target/
 eforms-service/eforms-kjar/target/
 eforms-service/eforms-model/target/
@@ -9,5 +26,7 @@ eforms-service/target/classes/KIE-INF/lib/eforms-kjar-1.0-SNAPSHOT.jar
 eforms-service/target/classes/KIE-INF/lib/eforms-model-1.0-SNAPSHOT.jar
 eforms-kjar/target/classes/moh_process.bpmn
 eforms-kjar/target/classes/moh_process.bpmn
-ocp-image/root/opt/spring-service/eforms-service-1.0-SNAPSHOT.jar
+*.swp
+*.swo
 simple_process.bpmn
+ocp-image/root/opt/spring-service/*.jar
