@@ -28,12 +28,21 @@ import org.jbpm.services.api.ProcessService;
 import org.jbpm.services.api.UserTaskService;
 import org.jbpm.casemgmt.api.CaseService;
 import org.jbpm.casemgmt.api.model.instance.CaseInstance;
+import org.kie.api.task.model.OrganizationalEntity;
+import org.jbpm.casemgmt.api.model.instance.CaseFileInstance;
+import org.jbpm.services.task.impl.model.UserImpl;
 import org.kie.api.task.TaskService;
 import org.kie.api.task.model.Status;
 //import org.kie.server.services.taskassigning.core.model.Task;
 import org.kie.api.task.model.Task;
 import org.kie.api.runtime.process.CaseData;
 import org.jbpm.services.api.RuntimeDataService;
+import org.kie.api.runtime.Context;
+import org.kie.api.runtime.KieSession;
+import org.kie.api.runtime.manager.RuntimeEngine;
+import org.kie.api.runtime.manager.RuntimeManager;
+import org.kie.internal.runtime.manager.RuntimeManagerRegistry;
+import org.kie.internal.runtime.manager.context.ProcessInstanceIdContext;
  
 @RestController
 @RequestMapping("/api")
@@ -50,6 +59,10 @@ public class HomeController {
 
     @Autowired
     CaseService caseService;
+
+    RuntimeManager manager;
+    RuntimeEngine engine;
+    KieSession ksession;
 
     //CaseData casedata;
 
@@ -195,7 +208,10 @@ public class HomeController {
         
         parameters.put("patient", p);
 
-        ohId = processService.startProcess("eforms-kjar-container1", "itorders.orderhardware", parameters);
+        manager = RuntimeManagerRegistry.get().getManager("eforms-kjar-container1");
+        engine = manager.getRuntimeEngine(ProcessInstanceIdContext.get(ohId));
+        ksession = engine.getKieSession();
+        ohId = ksession.startProcess("itorders.orderhardware", parameters).getId();
 
 	return ohId.toString();
 
@@ -204,9 +220,22 @@ public class HomeController {
     @GetMapping("/orderHardwareCase")
     public String orderHardwareCase(){
 	String Message = "";
+
+
 	    // using our precreated container eforms-kjar-container1
 	    // itorders.orderhardware is the name of the case ID and process ID
-	Message += caseService.startCase("eforms-kjar-container1", "itorders.orderhardware");
+	Map<String, OrganizationalEntity> roleAssignments = new HashMap<>();
+        roleAssignments.put("owner", new UserImpl("john"));
+
+        Map<String, Object> data = new HashMap<>();
+        CaseFileInstance caseFile = caseService.newCaseFileInstance("eforms-kjar-container1", "itorders.orderhardware", data, roleAssignments);
+	Message += caseFile.toString();
+	Message += "\n";
+
+	System.out.println(Message);
+
+	ksession.insert(caseFile);
+	Message += caseService.startCase("eforms-kjar-container1", "itorders.orderhardware", caseFile);
 	System.out.println(Message);
 
 	globalCaseInstance = caseService.getCaseInstance("itorders.orderhardware");
