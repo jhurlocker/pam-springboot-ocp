@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,6 +28,7 @@ import ca.ontario.moh.models.Patient;
 import org.jbpm.services.api.ProcessService;
 import org.jbpm.services.api.UserTaskService;
 import org.jbpm.casemgmt.api.CaseService;
+import org.jbpm.casemgmt.api.CaseRuntimeDataService;
 import org.jbpm.casemgmt.api.model.instance.CaseInstance;
 import org.kie.api.task.model.OrganizationalEntity;
 import org.jbpm.casemgmt.api.model.instance.CaseFileInstance;
@@ -43,7 +45,10 @@ import org.kie.api.runtime.manager.RuntimeEngine;
 import org.kie.api.runtime.manager.RuntimeManager;
 import org.kie.internal.runtime.manager.RuntimeManagerRegistry;
 import org.kie.internal.runtime.manager.context.ProcessInstanceIdContext;
- 
+import org.kie.server.services.casemgmt.CaseManagementServiceBase; 
+import org.kie.server.services.api.KieServerRegistry;
+
+
 @RestController
 @RequestMapping("/api")
 public class HomeController {
@@ -59,6 +64,14 @@ public class HomeController {
 
     @Autowired
     CaseService caseService;
+
+    @Autowired
+    CaseRuntimeDataService caseRuntimeDataService;
+
+    @Autowired
+    KieServerRegistry context;
+
+    CaseManagementServiceBase caseMgmtSerBas = new CaseManagementServiceBase(caseService, caseRuntimeDataService, context);
 
     RuntimeManager manager;
     RuntimeEngine engine;
@@ -217,25 +230,32 @@ public class HomeController {
 
     }
 
-    @GetMapping("/orderHardwareCase")
-    public String orderHardwareCase(){
+    //@GetMapping("/orderHardwareCase")
+    @PostMapping(path = "/oderHardwareCase")
+    public String orderHardwareCase(@RequestBody String data){
 	String Message = "";
 
 
 	    // using our precreated container eforms-kjar-container1
 	    // itorders.orderhardware is the name of the case ID and process ID
-	Map<String, OrganizationalEntity> roleAssignments = new HashMap<>();
-        roleAssignments.put("owner", new UserImpl("john"));
+/*	Map<String, OrganizationalEntity> roleAssignments = new HashMap<>();
+        roleAssignments.put("owner", new UserImpl("otto"));
+	roleAssignments.put("manager", new UserImpl("mando"));
+	roleAssignments.put("supplier", new UserImpl("samo"));*/
 
-        Map<String, Object> data = new HashMap<>();
-        CaseFileInstance caseFile = caseService.newCaseFileInstance("eforms-kjar-container1", "itorders.orderhardware", data, roleAssignments);
-	Message += caseFile.toString();
+//        Map<String, Object> data = new HashMap<>();
+
+//	String data = "{\"roleAssignments\": {\"owner\" : \"otto\", \"manager\" : \"mando\", \"supplier\" : \" }";
+        //CaseFileInstance caseFile = caseService.newCaseFileInstance("eforms-kjar-container1", "itorders.orderhardware", data, roleAssignments);
+//	Message += caseFile.toString();
 	Message += "\n";
+	Message += data;
 
 	System.out.println(Message);
+	Message += "\n";
 
-	ksession.insert(caseFile);
-	Message += caseService.startCase("eforms-kjar-container1", "itorders.orderhardware", caseFile);
+//	ksession.insert(caseFile);
+	Message += caseMgmtSerBas.startCase("eforms-kjar-container1", "itorders.orderhardware", data, "application/json");
 	System.out.println(Message);
 
 	globalCaseInstance = caseService.getCaseInstance("itorders.orderhardware");
@@ -248,13 +268,15 @@ public class HomeController {
     }
 
     //Creates and sets case as global case variable from ITordersHardware
-    @GetMapping("/orderHardwareCaseStatus")
-    public String orderHardwareCaseStatus(){
+    @GetMapping("/getOrderHardwareCaseInstance")
+    public String getOrderHardwareCaseInstance(){
 	String Message = "";
 
 	System.out.println("_______ORDER_HARDWARE_STATUS_______");
-	System.out.println(globalCaseInstance.toString());
+//	System.out.println(globalCaseInstance.toString());
+	Message += caseMgmtSerBas.getCaseInstance("eforms-kjar-container1", Message, true, true, true, true, "application/json");
 
+	Message += ohId;
         Message += "\n";
 	Message += globalCaseInstance.toString();
 
