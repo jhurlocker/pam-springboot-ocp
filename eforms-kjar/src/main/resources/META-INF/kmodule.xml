@@ -23,4 +23,7 @@
       </listeners>
     </ksession>
   </kbase-->
+      <kbase name="MohKB" packages="ca.ontario.moh.service.controller">
+        <ksession name="MohKsession"/>
+    </kbase>
 </kmodule>

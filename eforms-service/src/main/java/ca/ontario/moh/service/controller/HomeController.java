@@ -71,11 +71,15 @@ public class HomeController {
     @Autowired
     KieServerRegistry context;
 
-    CaseManagementServiceBase caseMgmtSerBas = new CaseManagementServiceBase(caseService, caseRuntimeDataService, context);
+    CaseManagementServiceBase caseMgmtSerBas;
+
+    KieServices ks = KieServices.Factory.get();
+    KieContainer kc = ks.getKieClasspathContainer();
+    
 
     RuntimeManager manager;
     RuntimeEngine engine;
-    KieSession ksession;
+    KieSession ksession = kc.newKieSession("MohKsession");
 
     //CaseData casedata;
 
@@ -231,10 +235,20 @@ public class HomeController {
     }
 
     //@GetMapping("/orderHardwareCase")
-    @PostMapping(path = "/oderHardwareCase")
+    @PostMapping(path = "/orderHardwareCase")
     public String orderHardwareCase(@RequestBody String data){
-	String Message = "";
+	String message = "";
 
+	String cmsbDebug = "CASE SERVICE: \n";
+        cmsbDebug += caseService;
+	cmsbDebug += "\nRUNTIME SERVICE: \n";
+        cmsbDebug += caseRuntimeDataService;
+        cmsbDebug += "\n KIE_REGISTRY_SERVICE\n";
+	cmsbDebug += context;
+	System.out.println(cmsbDebug);
+	message += "\n";
+	
+	caseMgmtSerBas = new CaseManagementServiceBase(caseService, caseRuntimeDataService, context);
 
 	    // using our precreated container eforms-kjar-container1
 	    // itorders.orderhardware is the name of the case ID and process ID
@@ -247,83 +261,83 @@ public class HomeController {
 
 //	String data = "{\"roleAssignments\": {\"owner\" : \"otto\", \"manager\" : \"mando\", \"supplier\" : \" }";
         //CaseFileInstance caseFile = caseService.newCaseFileInstance("eforms-kjar-container1", "itorders.orderhardware", data, roleAssignments);
-//	Message += caseFile.toString();
-	Message += "\n";
-	Message += data;
+//	message += caseFile.toString();
+	message += "\n";
+	message += data;
 
-	System.out.println(Message);
-	Message += "\n";
+	System.out.println(message);
+	message += "\n";
 
 //	ksession.insert(caseFile);
-	Message += caseMgmtSerBas.startCase("eforms-kjar-container1", "itorders.orderhardware", data, "application/json");
-	System.out.println(Message);
+	message += caseMgmtSerBas.startCase("eforms-kjar-container1", "itorders.orderhardware", data, "application/json");
+	System.out.println(message);
 
 	globalCaseInstance = caseService.getCaseInstance("itorders.orderhardware");
 	System.out.println(globalCaseInstance.toString());
 
-        Message += "\n";
-	Message += globalCaseInstance.toString();
+        message += "\n";
+	message += globalCaseInstance.toString();
 
-	return Message;	
+	return message;	
     }
 
     //Creates and sets case as global case variable from ITordersHardware
     @GetMapping("/getOrderHardwareCaseInstance")
     public String getOrderHardwareCaseInstance(){
-	String Message = "";
+	String message = "";
 
 	System.out.println("_______ORDER_HARDWARE_STATUS_______");
 //	System.out.println(globalCaseInstance.toString());
-	Message += caseMgmtSerBas.getCaseInstance("eforms-kjar-container1", Message, true, true, true, true, "application/json");
+	message += caseMgmtSerBas.getCaseInstance("eforms-kjar-container1", message, true, true, true, true, "application/json");
 
-	Message += ohId;
-        Message += "\n";
-	Message += globalCaseInstance.toString();
+	message += ohId;
+        message += "\n";
+	message += globalCaseInstance.toString();
 
-	return Message;	
+	return message;	
     }
 
     //Milestone Triggers
     //order placed
     @GetMapping("/orderPlacedTrigger")
     public String orderPlacedTrigger(){
-	String Message = "";
+	String message = "";
 
 	processVariables = processService.getProcessInstanceVariables(ohId);
         caseService.triggerAdHocFragment(globalCaseInstance.getCaseId(), "Milestone 1: Order placed", processVariables.replace("ordered", false, true));
-	Message += "-----order placed milestone triggered------";
+	message += "-----order placed milestone triggered------";
 
-	Message += processVariables.toString();
-	System.out.println(Message);
-	return Message;
+	message += processVariables.toString();
+	System.out.println(message);
+	return message;
     }
 
     //order shipped
     @GetMapping("/orderShippedTrigger")
     public String orderShippedTrigger(){
-	String Message = "";
+	String message = "";
 
 	processVariables = processService.getProcessInstanceVariables(ohId);
         caseService.triggerAdHocFragment(globalCaseInstance.getCaseId(), "Milestone 2: Order shipped", processVariables.replace("shipped", false, true));
-	Message += "-----order shipped milestone triggered------";
+	message += "-----order shipped milestone triggered------";
 
-	Message += processVariables.toString();
-	System.out.println(Message);
-	return Message;
+	message += processVariables.toString();
+	System.out.println(message);
+	return message;
     }
 
     //order delivered
     @GetMapping("/orderDeliveredTrigger")
     public String orderDeliveredTrigger(){
-	String Message = "";
+	String message = "";
 
 	processVariables = processService.getProcessInstanceVariables(ohId);
         caseService.triggerAdHocFragment(globalCaseInstance.getCaseId(), "Milestone 3: Order delivered", processVariables.replace("shipped", false, true));
-	Message += "-----order delievered milestone triggered------";
+	message += "-----order delievered milestone triggered------";
 
-	Message += processVariables.toString();
-	System.out.println(Message);
-	return Message;
+	message += processVariables.toString();
+	System.out.println(message);
+	return message;
     }
 
     //STARTS THE moh_process
