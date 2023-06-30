@@ -36,6 +36,11 @@ import org.jbpm.services.task.impl.model.UserImpl;
 import org.kie.api.task.TaskService;
 import org.kie.api.task.model.Status;
 //import org.kie.server.services.taskassigning.core.model.Task;
+import org.kie.server.api.model.KieContainerStatus;
+import org.kie.server.services.api.KieContainerInstance;
+import org.kie.server.services.impl.KieContainerInstanceImpl;
+import org.kie.api.KieServices;
+import org.kie.api.runtime.KieContainer;
 import org.kie.api.task.model.Task;
 import org.kie.api.runtime.process.CaseData;
 import org.jbpm.services.api.RuntimeDataService;
@@ -249,6 +254,8 @@ public class HomeController {
 	message += "\n";
 	
 	caseMgmtSerBas = new CaseManagementServiceBase(caseService, caseRuntimeDataService, context);
+	KieContainerInstance newContainer = new KieContainerInstanceImpl("eforms-kjar-container1", KieContainerStatus.STARTED);
+	System.out.println(context.getKieSessionLookupManager().lookup("MohKSession", newContainer, context));
 
 	    // using our precreated container eforms-kjar-container1
 	    // itorders.orderhardware is the name of the case ID and process ID
