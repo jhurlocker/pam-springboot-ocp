@@ -244,6 +244,7 @@ public class HomeController {
     public String orderHardwareCase(@RequestBody String data){
 	String message = "";
 
+/*
 	String cmsbDebug = "CASE SERVICE: \n";
         cmsbDebug += caseService;
 	cmsbDebug += "\nRUNTIME SERVICE: \n";
@@ -252,29 +253,23 @@ public class HomeController {
 	cmsbDebug += context;
 	System.out.println(cmsbDebug);
 	message += "\n";
-	
+*/	
 	caseMgmtSerBas = new CaseManagementServiceBase(caseService, caseRuntimeDataService, context);
 	KieContainerInstance newContainer = new KieContainerInstanceImpl("eforms-kjar-container1", KieContainerStatus.STARTED);
-	System.out.println(context.getKieSessionLookupManager().lookup("MohKSession", newContainer, context));
-
-	    // using our precreated container eforms-kjar-container1
-	    // itorders.orderhardware is the name of the case ID and process ID
-/*	Map<String, OrganizationalEntity> roleAssignments = new HashMap<>();
-        roleAssignments.put("owner", new UserImpl("otto"));
-	roleAssignments.put("manager", new UserImpl("mando"));
-	roleAssignments.put("supplier", new UserImpl("samo"));*/
-
-//        Map<String, Object> data = new HashMap<>();
-
-//	String data = "{\"roleAssignments\": {\"owner\" : \"otto\", \"manager\" : \"mando\", \"supplier\" : \" }";
-        //CaseFileInstance caseFile = caseService.newCaseFileInstance("eforms-kjar-container1", "itorders.orderhardware", data, roleAssignments);
-//	message += caseFile.toString();
+/*	
+	cmsbDebug = "CASE MANAGEMENT SERVICE BASE: \n";
+        cmsbDebug += caseMgmtSerBas;
+	cmsbDebug += "\n NEW KIE CONTAINER \n";
+        cmsbDebug += newContainer;
+        cmsbDebug += "\n KIE_REGISTRY_SERVICE\n";
+	cmsbDebug += context;
+	System.out.println(cmsbDebug);
 	message += "\n";
 	message += data;
 
 	System.out.println(message);
 	message += "\n";
-
+*/
 //	ksession.insert(caseFile);
 	message += caseMgmtSerBas.startCase("eforms-kjar-container1", "itorders.orderhardware", data, "application/json");
 	System.out.println(message);

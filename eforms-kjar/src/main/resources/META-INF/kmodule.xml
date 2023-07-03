@@ -22,8 +22,8 @@
         <processEventListener type="org.domain.ProcessListener"/>
       </listeners>
     </ksession>
-  </kbase-->
+  </kbase>
       <kbase name="MohKB" packages="ca.ontario.moh.service.controller">
         <ksession name="MohKsession"/>
-    </kbase>
+    </kbase-->
 </kmodule>
