@@ -25,7 +25,7 @@
     <!-- There is an issue with favric 3.5.40 see: https://issues.redhat.com/browse/JBPM-9045 -->
     <fabric8.version>4.4.0</fabric8.version>
     <version.io.swagger>1.6.2</version.io.swagger>
-    <version.org.apache.cxf>3.4.5.redhat-00001</version.org.apache.cxf>
+    <version.org.apache.cxf>3.5.5.redhat-00028</version.org.apache.cxf>
     <version.org.webjars.swagger-ui>2.2.10</version.org.webjars.swagger-ui>
   </properties>
 
@@ -122,7 +122,7 @@
  <dependency>
   <groupId>org.apache.cxf</groupId>
   <artifactId>cxf-rt-rs-service-description-swagger</artifactId>
-  <version>3.2.9</version>
+  <version>${version.org.apache.cxf}</version>
 </dependency>
 <dependency>
   <groupId>io.swagger</groupId>
