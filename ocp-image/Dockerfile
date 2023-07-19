@@ -25,5 +25,5 @@ EXPOSE 8090
 # run app #
 ###########
 USER 1001
-ENTRYPOINT ["java", "-jar","-Duser.home=$HOME","-Xms500M", "-Xmx2048M", "-XX:+UseG1GC"]
+ENTRYPOINT ["java", "-jar","-Duser.home=$HOME","-Xms500M", "-Xmx2048M", "-XX:+UseG1GC", "-Dorg.drools.server.filter.classes=true"]
 CMD ["/opt/spring-service/eforms-service-1.0-SNAPSHOT.jar"]
